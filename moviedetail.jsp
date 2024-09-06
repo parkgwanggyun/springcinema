@@ -289,7 +289,7 @@
   					<div class="movi_tab_info1">
   						<h4 class="tit_info_type1">영화정보</h4>
   						<ul class="detail_info2">
-  							<li><em>장르</em><span>장르/제작국가</span></li>
+  							<li><em>장르</em><span>장르</span></li>
   							<li><em>감독</em><span>감독</span></li>
   							<li><em>출연</em><span>배우</span></li>
   						</ul>
