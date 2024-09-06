@@ -173,6 +173,7 @@
     border-radius: 5px;
     transition: background-color 0.3s;
     margin-top: 20px;
+	text-align : right;
 }
 
 .button:hover {
@@ -186,7 +187,6 @@
 
 .innerfull.gray {
     background-color: #f9f9f9;
-    padding: 20px 0;
 }
 
 .inner980 {
@@ -204,6 +204,10 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    background-color: #fff;
+    border: 1px solid #ddd; /* 테두리 추가 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    padding: 20px;
 }
 
 .detail_info2 li {
@@ -230,12 +234,21 @@
         <div class="logo">
            <a href="<c:url value='/khcinema/'/>">KH CINEMA</a>
         </div>
-        <div class="menu">
-        	<a href="#">회원가입</a>
-        	<a href="#">로그인</a>
-            <a href="#">영화</a>
-            <a href="#">예매</a>
-        </div>
+		<div class="menu">
+    		<!-- 비로그인 상태에서 회원가입과 로그인 버튼 표시 -->
+    			<c:if test="${!isLoggedIn}">
+        			<a href="#">회원가입</a>
+        			<a href="#">로그인</a>
+    			</c:if>    
+   		 	<!-- 로그인 상태에서 로그아웃 버튼 표시 -->
+    			<c:if test="${isLoggedIn}">
+        			<a href="#">로그아웃</a>
+    			</c:if>    
+    		<!-- 관리자 로그인 시 영화 등록 버튼 표시 -->
+    			<c:if test="${isAdmin}">
+        			<a href="#">영화 등록</a>
+    			</c:if>
+		</div>
     </nav>
     <div id="contents_new23">
     	<div id="contents" class="contents_movie_detail">
@@ -261,7 +274,13 @@
     					</span>
     				</div>
     			</div>
-    			<a href="#" class="button">예매하기</a>
+    			<!-- 영화상세 관리자 로그인 시에만 보이는 수정 버튼 -->
+  				 <div style="text-align: right;">
+    				<c:if test="${isAdmin}">
+       					<a href="/editMovie" class="button">수정하기</a>
+    				</c:if>
+    				<a href="#" class="button">예매하기</a>
+				</div>
     		</div>
     	</div>
   		<div class="tab_con">
@@ -274,6 +293,12 @@
   							<li><em>감독</em><span>감독</span></li>
   							<li><em>출연</em><span>배우</span></li>
   						</ul>
+	  				<!-- 영화정보 관리자 로그인 시에만 보이는 수정 버튼 -->
+  						 <div style="text-align: right;">
+    						<c:if test="${isAdmin}">
+       							<a href="/editMovie" class="button">수정하기</a>
+    						</c:if>
+    					</div>
   					</div>
   				</div>
   			</div>
