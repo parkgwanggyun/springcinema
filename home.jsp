@@ -116,6 +116,7 @@ body {
 .movie-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
 }
 
 /* 버튼 스타일 */
@@ -184,7 +185,6 @@ body {
 .movie-carousel {
    position: relative;
     width: 100%;
-    height: 70vh; /* 화면 전체 높이 */
     display: flex;
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
@@ -246,10 +246,21 @@ body {
         <div class="logo">
             <a href="<c:url value='/khcinema/'/>">KH CINEMA</a>
         </div>
-        <div class="menu">
-        	<a href="회원가입 페이지">회원가입</a>
-        	<a href="로그인페이지">로그인</a>
-        </div>
+		<div class="menu">
+    		<!-- 비로그인 상태에서 회원가입과 로그인 버튼 표시 -->
+    			<c:if test="${!isLoggedIn}">
+        			<a href="#">회원가입</a>
+        			<a href="#">로그인</a>
+    			</c:if>    
+   		 	<!-- 로그인 상태에서 로그아웃 버튼 표시 -->
+    			<c:if test="${isLoggedIn}">
+        			<a href="#">로그아웃</a>
+    			</c:if>    
+    		<!-- 관리자 로그인 시 영화 등록 버튼 표시 -->
+    			<c:if test="${isAdmin}">
+        			<a href="#">영화 등록</a>
+    			</c:if>
+		</div>
     </nav>
 	<div class="BOXOFFICE">
 		<p>BOX OFFICE</p>
