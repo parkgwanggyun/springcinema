@@ -60,11 +60,10 @@
     color: #ffffff;
     text-align: center;
     padding: 20px 0;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed; */ /* 고정 위치 속성 삭제 */
+    bottom: 0; /* 고정 위치 관련 속성 삭제 */
     width: 100%;
     border-top: 1px solid #e0e0e0;
-    z-index: 1000;
 }
 
 .footer-content {
@@ -277,6 +276,7 @@
     			<!-- 영화상세 관리자 로그인 시에만 보이는 수정 버튼 -->
   				 <div style="text-align: right;">
     				<c:if test="${isAdmin}">
+    					<!-- 수정하기 제작중 -->
        					<a href="/editMovie" class="button">수정하기</a>
     				</c:if>
     				<a href="#" class="button">예매하기</a>
@@ -296,6 +296,7 @@
 	  				<!-- 영화정보 관리자 로그인 시에만 보이는 수정 버튼 -->
   						 <div style="text-align: right;">
     						<c:if test="${isAdmin}">
+    							<!-- 수정하기 제작중 -->
        							<a href="/editMovie" class="button">수정하기</a>
     						</c:if>
     					</div>

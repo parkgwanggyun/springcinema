@@ -151,11 +151,10 @@ body {
     color: #ffffff;
     text-align: center;
     padding: 20px 0;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed; */ /* 고정 위치 속성 삭제 */
+    bottom: 0; /* 고정 위치 관련 속성 삭제 */
     width: 100%;
     border-top: 1px solid #e0e0e0;
-    z-index: 1000;
 }
 
 .footer-content {
