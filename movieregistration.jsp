@@ -5,11 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영화 상세</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영화 등록</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>영화 등록</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* 기존 페이지의 스타일을 여기에 추가 */
 html, body {
@@ -195,8 +193,11 @@ body {
             
             <div class="form-group">
                 <label for="poster">포스터 이미지:</label>
-                <input type="file" class="form-control-file" id="poster" name="poster" required>
+                <input type="file" onchange="readURL(this);" class="form-control-file" id="poster" name="poster" required>
             </div>
+            <div class="form-group">
+  			<img id="posterPreview" src="" alt="포스터 미리보기" style="width: 200px; height: auto;" />
+			</div>
             <div class="form-group d-flex justify-content-end">
     			<button type="submit" class="btn btn-primary">저장</button>
 			</div>
@@ -216,5 +217,24 @@ body {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    function readURL(input) {
+    	  if (input.files && input.files[0]) {
+    	    var file = input.files[0];
+    	    if (file.type.match('image.*')) {
+    	      var reader = new FileReader();
+    	      reader.onload = function(e) {
+    	        document.getElementById('posterPreview').src = e.target.result;
+    	      };
+    	      reader.readAsDataURL(file);
+    	    } else {
+    	      alert("이미지 파일을 선택해주세요.");
+    	      document.getElementById('posterPreview').src = "";  // 이미지 초기화
+    	    }
+    	  } else {
+    	    document.getElementById('posterPreview').src = "";
+    	  }
+    	}
+    </script>
 </body>
 </html>
