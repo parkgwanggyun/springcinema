@@ -174,6 +174,10 @@ body {
                 <label for="duration">상영시간 (분):</label>
                 <input type="number" class="form-control" id="duration" name="duration" required>
             </div>
+            <div class="form-group">
+                <label for="viewableage">시청가능 연령:</label>
+                <input type="number" class="form-control" id="viewableage" name="viewableage" required>
+            </div>
 			<div class="form-group">
 			    <label for="story">줄거리:</label>
 			    <textarea class="form-control" id="story" name="story" rows="5" required></textarea>
