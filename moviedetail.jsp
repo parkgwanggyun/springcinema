@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 <title>영화 상세</title>
 <style type="text/css">
-/* 네비게이션 바 */
-.navbar {
+    .navbar {
     background-color: #ffffff;
     border-bottom: 1px solid #e0e0e0;
     position: fixed;
@@ -143,16 +142,16 @@
     margin-bottom: 20px;
     list-style-type: none; /* 기본 점 제거 */
 }
-
-.mov_info1 li::after {
-    content: '|'; /* 각 항목 사이에 구분 기호 추가 */
-    margin-left: 10px;
+.mov_info1 li span {
+    margin-right: 10px; /* 각 span 요소 사이에 간격 추가 */
 }
-
 .mov_info1 li:last-child::after {
     content: ''; /* 마지막 항목에는 구분 기호 없앰 */
 }
-
+.mov_info1 li {
+    display: flex;
+    align-items: center;
+}
 .txtarea_box {
     margin-top: 20px;
 }
@@ -225,25 +224,87 @@
 .detail_info2 li span {
     color: #666;
 }
+    /* 수정 버튼과 입력 필드 스타일 */
+    .edit-input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 저장 버튼 스타일 */
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ff5500;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        margin-top: 20px;
+        text-align: right;
+        cursor: pointer;
+        border: none;
+        font-size: 16px;
+    }
+
+    .button:hover {
+        background-color: #ff3300;
+    }
+
+    .button[disabled] {
+        background-color: #ddd;
+        cursor: not-allowed;
+    }
+
+    /* 입력 필드 및 버튼 컨테이너 */
+    .form-container {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 </style>
 </head>
 <body>
- <!-- 네비게이션 바 -->
     <nav class="navbar">
         <div class="logo">
            <a href="<c:url value='/khcinema/'/>">KH CINEMA</a>
         </div>
 		<div class="menu">
-    		<!-- 비로그인 상태에서 회원가입과 로그인 버튼 표시 -->
+    		<!-- 로그인 상태에 따라 회원가입, 로그인, 로그아웃 버튼 표시 -->
     			<c:if test="${!isLoggedIn}">
         			<a href="#">회원가입</a>
         			<a href="#">로그인</a>
     			</c:if>    
-   		 	<!-- 로그인 상태에서 로그아웃 버튼 표시 -->
     			<c:if test="${isLoggedIn}">
         			<a href="#">로그아웃</a>
     			</c:if>    
-    		<!-- 관리자 로그인 시 영화 등록 버튼 표시 -->
     			<c:if test="${isAdmin}">
         			<a href="#">영화 등록</a>
     			</c:if>
@@ -256,28 +317,24 @@
     		</div>
     		<div class="detail_top_wrap new22">
     			<div class="tit_info">
-    				<strong>영화제목</strong>
+    				<strong id="movieTitle">영화제목</strong>
     			</div>
     			<ul class="mov_info1">
-    				<li><span class="roboto">xxxx-xx-xx</span> <!-- 개봉일 --></li>
-    				<li><span class="roboto">200</span> "분" <!-- 상영시간 --></li>
-    				<li><span class="roboto">15</span> "세" <!-- 시청 가능 연령 --></li>
+    				<li><span id="releaseDate">xxxx-xx-xx</span> <!-- 개봉일 --></li>
+    				<li><span id="duration">200</span> 분 <!-- 상영시간 --></li>
+    				<li><span id="ageRating">15</span> 세 <!-- 시청 가능 연령 --></li>
     			</ul>
     			<div class="txtarea_box movdetailtxt">
     				<div class="txtarea">
-    					<span>가족들도 못 챙기고 밤낮없이 범죄들과 싸우는 베테랑 형사 '서도철'(황정민)과 강력범죄수사대 형사들.
-							<br><br>
-							어느 날, 한 교수의 죽음이 이전에 발생했던 살인 사건들과 연관성이 있는 것으로 밝혀지며 전국은 연쇄살인범으로 인해 떠들썩해진다. 이에 단서를 추적하며 수사를 시작한 형사들. 하지만 이들을 비웃기라도 하듯, 연쇄살인범은 다음 살인 대상을 지목하는 예고편을 인터넷에 공개하며 또 한 번 전 국민을 흔들어 놓는다.
-							<br><br>
-							강력범죄수사대는 서도철의 눈에 든 정의감 넘치는 막내 형사 '박선우' (정해인)를 투입한다. 그리고 사건은 새로운 방향으로 흐르게 되는데...
-    					</span>
+    					<span id="movieDescription">가족들도 못 챙기고 밤낮없이 범죄들과 싸우는 베테랑 형사 '서도철'(황정민)과 강력범죄수사대 형사들...</span>
     				</div>
     			</div>
     			<!-- 영화상세 관리자 로그인 시에만 보이는 수정 버튼 -->
-  				 <div style="text-align: right;">
+  				<div style="text-align: right;">
     				<c:if test="${isAdmin}">
-    					<!-- 수정하기 제작중 -->
-       					<a href="/editMovie" class="button">수정하기</a>
+    					<!-- 수정 기능 추가 -->
+       					<button id="editBtn" class="button">수정하기</button>
+       					<button id="saveBtn" class="button" style="display:none;">저장하기</button>
     				</c:if>
     				<a href="#" class="button">예매하기</a>
 				</div>
@@ -289,15 +346,15 @@
   					<div class="movi_tab_info1">
   						<h4 class="tit_info_type1">영화정보</h4>
   						<ul class="detail_info2">
-  							<li><em>장르</em><span>장르</span></li>
-  							<li><em>감독</em><span>감독</span></li>
-  							<li><em>출연</em><span>배우</span></li>
+  							<li><em>장르</em><span id="genre">액션</span></li>
+  							<li><em>감독</em><span id="director">감독이름</span></li>
+  							<li><em>출연</em><span id="actors">배우이름</span></li>
   						</ul>
 	  				<!-- 영화정보 관리자 로그인 시에만 보이는 수정 버튼 -->
   						 <div style="text-align: right;">
     						<c:if test="${isAdmin}">
-    							<!-- 수정하기 제작중 -->
-       							<a href="/editMovie" class="button">수정하기</a>
+       							<button id="editInfoBtn" class="button">정보 수정</button>
+       							<button id="saveInfoBtn" class="button" style="display:none;">저장하기</button>
     						</c:if>
     					</div>
   					</div>
@@ -316,5 +373,63 @@
             </ul>
         </div>
     </footer>
+
+    <!-- JavaScript 코드 -->
+    <script>
+    const editBtn = document.getElementById('editBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const fieldsToEdit = ['movieTitle', 'releaseDate', 'duration', 'ageRating', 'movieDescription'];
+
+    // 수정 버튼 클릭 시
+    editBtn.addEventListener('click', () => {
+        fieldsToEdit.forEach(id => {
+            const element = document.getElementById(id);
+            const currentValue = element.textContent;
+            element.innerHTML = `<input class="edit-input" type='text' value='${currentValue}' />`;
+        });
+        editBtn.style.display = 'none';
+        saveBtn.style.display = 'inline-block';
+    });
+
+    // 저장 버튼 클릭 시
+    saveBtn.addEventListener('click', () => {
+        fieldsToEdit.forEach(id => {
+            const element = document.getElementById(id);
+            const inputField = element.querySelector('input');
+            if (inputField) {
+                element.textContent = inputField.value;
+            }
+        });
+        editBtn.style.display = 'inline-block';
+        saveBtn.style.display = 'none';
+    });
+
+    // 영화 정보 수정
+    const editInfoBtn = document.getElementById('editInfoBtn');
+    const saveInfoBtn = document.getElementById('saveInfoBtn');
+    const infoFieldsToEdit = ['genre', 'director', 'actors'];
+
+    editInfoBtn.addEventListener('click', () => {
+        infoFieldsToEdit.forEach(id => {
+            const element = document.getElementById(id);
+            const currentValue = element.textContent;
+            element.innerHTML = `<input class="edit-input" type='text' value='${currentValue}' />`;
+        });
+        editInfoBtn.style.display = 'none';
+        saveInfoBtn.style.display = 'inline-block';
+    });
+
+    saveInfoBtn.addEventListener('click', () => {
+        infoFieldsToEdit.forEach(id => {
+            const element = document.getElementById(id);
+            const inputField = element.querySelector('input');
+            if (inputField) {
+                element.textContent = inputField.value;
+            }
+        });
+        editInfoBtn.style.display = 'inline-block';
+        saveInfoBtn.style.display = 'none';
+    });
+    </script>
 </body>
 </html>
