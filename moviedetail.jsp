@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -291,44 +293,27 @@
 </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-           <a href="<c:url value='/khcinema/'/>">KH CINEMA</a>
-        </div>
-		<div class="menu">
-    		<!-- 로그인 상태에 따라 회원가입, 로그인, 로그아웃 버튼 표시 -->
-    			<c:if test="${!isLoggedIn}">
-        			<a href="#">회원가입</a>
-        			<a href="#">로그인</a>
-    			</c:if>    
-    			<c:if test="${isLoggedIn}">
-        			<a href="#">로그아웃</a>
-    			</c:if>    
-    			<c:if test="${isAdmin}">
-        			<a href="#">영화 등록</a>
-    			</c:if>
-		</div>
-    </nav>
+
     <div id="contents_new23">
     	<div id="contents" class="contents_movie_detail">
     		<div class="poster_info">
-    			<img alt="영화상세" src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202409/21394_103_1.jpg">
+    			<img alt="영화상세" src="${movie.mo_image }">
     		</div>
     		<div class="detail_top_wrap new22">
     			<div class="tit_info">
-    				<strong id="movieTitle">영화제목</strong>
+    				<strong id="movieTitle">${movie.mo_title }</strong>
     			</div>
     			<ul class="mov_info1">
-    				<li><span id="releaseDate">xxxx-xx-xx</span> <!-- 개봉일 --></li>
-    				<li><span id="duration">200</span> 분 <!-- 상영시간 --></li>
-    				<li><span id="ageRating">15</span> 세 <!-- 시청 가능 연령 --></li>
+    				<li><span id="releaseDate"><fmt:formatDate value="${movie.mo_date }" pattern="yyyy-MM-dd"/></span> <!-- 개봉일 --></li>
+    				<li><span id="duration">${movie.mo_time }</span> "분" <!-- 상영시간 --></li>
+    				<li><span id="ageRating">${movie.mo_age }</span> "세" <!-- 시청 가능 연령 --></li>
     			</ul>
     			<div class="txtarea_box movdetailtxt">
     				<div class="txtarea">
-    					<span id="movieDescription">가족들도 못 챙기고 밤낮없이 범죄들과 싸우는 베테랑 형사 '서도철'(황정민)과 강력범죄수사대 형사들...</span>
+    					<span>${movie.mo_content }
+    					</span>
     				</div>
     			</div>
-    			<!-- 영화상세 관리자 로그인 시에만 보이는 수정 버튼 -->
   				<div style="text-align: right;">
     				<c:if test="${isAdmin}">
     					<!-- 수정 기능 추가 -->
@@ -336,7 +321,7 @@
        					<button id="saveBtn" class="button" style="display:none;">저장하기</button>
     				</c:if>
     				<a href="#" class="button">예매하기</a>
-				</div>
+    				</div>
     		</div>
     	</div>
   		<div class="tab_con">
@@ -345,11 +330,11 @@
   					<div class="movi_tab_info1">
   						<h4 class="tit_info_type1">영화정보</h4>
   						<ul class="detail_info2">
-  							<li><em>장르</em><span id="genre">액션</span></li>
-  							<li><em>감독</em><span id="director">감독이름</span></li>
-  							<li><em>출연</em><span id="actors">배우이름</span></li>
+  							<li><em>장르</em><span>장르/제작국가</span></li>
+  							<li><em>감독</em><span>감독</span></li>
+  							<li><em>출연</em><span>배우</span></li>
   						</ul>
-	  				<!-- 영화정보 관리자 로그인 시에만 보이는 수정 버튼 -->
+  						<!-- 영화정보 관리자 로그인 시에만 보이는 수정 버튼 -->
   						 <div style="text-align: right;">
     						<c:if test="${isAdmin}">
        							<button id="editInfoBtn" class="button">정보 수정</button>
@@ -372,8 +357,7 @@
             </ul>
         </div>
     </footer>
-
-    <!-- JavaScript 코드 -->
+        <!-- JavaScript 코드 -->
     <script>
     const editBtn = document.getElementById('editBtn');
     const saveBtn = document.getElementById('saveBtn');
@@ -429,6 +413,6 @@
         editInfoBtn.style.display = 'inline-block';
         saveInfoBtn.style.display = 'none';
     });
-    </script>
+    </script> 
 </body>
 </html>
