@@ -226,7 +226,6 @@
 }
     /* 수정 버튼과 입력 필드 스타일 */
     .edit-input {
-        width: 100%;
         padding: 10px;
         margin: 10px 0;
         font-size: 16px;
