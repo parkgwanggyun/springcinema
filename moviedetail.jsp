@@ -295,73 +295,75 @@
         <div class="logo">
            <a href="<c:url value='/khcinema/'/>">KH CINEMA</a>
         </div>
-		<div class="menu">
-    		<!-- 로그인 상태에 따라 회원가입, 로그인, 로그아웃 버튼 표시 -->
-    			<c:if test="${!isLoggedIn}">
-        			<a href="#">회원가입</a>
-        			<a href="#">로그인</a>
-    			</c:if>    
-    			<c:if test="${isLoggedIn}">
-        			<a href="#">로그아웃</a>
-    			</c:if>    
-    			<c:if test="${isAdmin}">
-        			<a href="#">영화 등록</a>
-    			</c:if>
-		</div>
+        <div class="menu">
+            <!-- 로그인 상태에 따라 회원가입, 로그인, 로그아웃 버튼 표시 -->
+            <c:if test="${!isLoggedIn}">
+                <a href="#">회원가입</a>
+                <a href="#">로그인</a>
+            </c:if>    
+            <c:if test="${isLoggedIn}">
+                <a href="#">로그아웃</a>
+            </c:if>    
+            <c:if test="${isAdmin}">
+                <a href="#">영화 등록</a>
+            </c:if>
+        </div>
     </nav>
+
+    <!-- 영화 상세 정보 영역 -->
     <div id="contents_new23">
-    	<div id="contents" class="contents_movie_detail">
-    		<div class="poster_info">
-    			<img alt="영화상세" src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202409/21394_103_1.jpg">
-    		</div>
-    		<div class="detail_top_wrap new22">
-    			<div class="tit_info">
-    				<strong id="movieTitle">영화제목</strong>
-    			</div>
-    			<ul class="mov_info1">
-    				<li><span id="releaseDate">xxxx-xx-xx</span> <!-- 개봉일 --></li>
-    				<li><span id="duration">200</span> 분 <!-- 상영시간 --></li>
-    				<li><span id="ageRating">15</span> 세 <!-- 시청 가능 연령 --></li>
-    			</ul>
-    			<div class="txtarea_box movdetailtxt">
-    				<div class="txtarea">
-    					<span id="movieDescription">가족들도 못 챙기고 밤낮없이 범죄들과 싸우는 베테랑 형사 '서도철'(황정민)과 강력범죄수사대 형사들...</span>
-    				</div>
-    			</div>
-    			<!-- 영화상세 관리자 로그인 시에만 보이는 수정 버튼 -->
-  				<div style="text-align: right;">
-    				<c:if test="${isAdmin}">
-    					<!-- 수정 기능 추가 -->
-       					<button id="editBtn" class="button">수정하기</button>
-       					<button id="saveBtn" class="button" style="display:none;">저장하기</button>
-    				</c:if>
-    				<a href="#" class="button">예매하기</a>
-				</div>
-    		</div>
-    	</div>
-  		<div class="tab_con">
-  			<div class="innerfull gray">
-  				<div class="inner980">
-  					<div class="movi_tab_info1">
-  						<h4 class="tit_info_type1">영화정보</h4>
-  						<ul class="detail_info2">
-  							<li><em>장르</em><span id="genre">액션</span></li>
-  							<li><em>감독</em><span id="director">감독이름</span></li>
-  							<li><em>출연</em><span id="actors">배우이름</span></li>
-  						</ul>
-	  				<!-- 영화정보 관리자 로그인 시에만 보이는 수정 버튼 -->
-  						 <div style="text-align: right;">
-    						<c:if test="${isAdmin}">
-       							<button id="editInfoBtn" class="button">정보 수정</button>
-       							<button id="saveInfoBtn" class="button" style="display:none;">저장하기</button>
-    						</c:if>
-    					</div>
-  					</div>
-  				</div>
-  			</div>
-  		</div>
-   </div>
-   <footer class="footer">
+        <form id="movieForm" method="POST" action="/updateMovieInfo">
+            <div id="contents" class="contents_movie_detail">
+                <div class="poster_info">
+                    <img alt="영화상세" src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202409/21394_103_1.jpg">
+                </div>
+                <div class="detail_top_wrap new22">
+                    <div class="tit_info">
+                        <strong id="movieTitle">영화제목</strong>
+                    </div>
+                    <ul class="mov_info1">
+                        <li><span id="releaseDate">xxxx-xx-xx</span> <!-- 개봉일 --></li>
+                        <li><span id="duration">200</span> 분 <!-- 상영시간 --></li>
+                        <li><span id="ageRating">15</span> 세 <!-- 시청 가능 연령 --></li>
+                    </ul>
+                    <div class="txtarea_box movdetailtxt">
+                        <div class="txtarea">
+                            <span id="movieDescription">가족들도 못 챙기고 밤낮없이 범죄들과 싸우는 베테랑 형사 '서도철'(황정민)과 강력범죄수사대 형사들...</span>
+                        </div>
+                    </div>
+                    <!-- 영화상세 관리자 로그인 시에만 보이는 수정 버튼 -->
+                    <div style="text-align: right;">
+                        <a href="#" class="button">예매하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 영화 정보 탭 -->
+            <div class="tab_con">
+                <div class="innerfull gray">
+                    <div class="inner980">
+                        <div class="movi_tab_info1">
+                            <h4 class="tit_info_type1">영화정보</h4>
+                            <ul class="detail_info2">
+                                <li><em>장르</em><span id="genre">액션</span></li>
+                                <li><em>감독</em><span id="director">감독이름</span></li>
+                                <li><em>출연</em><span id="actors">배우이름</span></li>
+                            </ul>
+                            <!-- 영화정보 관리자 로그인 시에만 보이는 수정 버튼 -->
+                            <div style="text-align: right;">
+                                <c:if test="${isAdmin}">
+                                    <button id="editInfoBtn" class="button">정보 수정</button>
+                                    <button type="submit" id="saveInfoBtn" class="button" style="display:none;">저장하기</button>
+                                </c:if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <footer class="footer">
         <div class="footer-content">
             <p>Team Members:</p>
             <ul class="team-list">
@@ -375,129 +377,54 @@
 
     <!-- JavaScript 코드 -->
     <script>
-    const editBtn = document.getElementById('editBtn');
-    const saveBtn = document.getElementById('saveBtn');
-    const fieldsToEdit = ['movieTitle', 'releaseDate', 'duration', 'ageRating', 'movieDescription'];
+    $(document).ready(function() {
+        const fieldsToEdit = ['movieTitle', 'releaseDate', 'duration', 'ageRating', 'movieDescription', 'genre', 'director', 'actors'];
 
-	// 수정 버튼 클릭 시
-	editBtn.addEventListener('click', () => {
-	    fieldsToEdit.forEach(id => {
-	        const element = document.getElementById(id);
-	        const currentValue = element.textContent;
-	        if (id === 'movieDescription') { 
-	            // 줄거리를 입력하는 칸은 textarea로 처리
-	            element.innerHTML = `<textarea class="edit-input" rows="5">${currentValue}</textarea>`;
-	        } else {
-	            element.innerHTML = `<input class="edit-input" type='text' value='${currentValue}' />`;
-	        }
-	    });
-	    editBtn.style.display = 'none';
-	    saveBtn.style.display = 'inline-block';
-	});
-	
-		// 저장 버튼 클릭 시
-		saveBtn.addEventListener('click', () => {
-		    let updatedData = {}; // 수정된 데이터를 저장할 객체
-		
-		    // 각 필드의 입력값을 추출
-		    fieldsToEdit.forEach(id => {
-		        const element = document.getElementById(id);
-		        const inputField = id === 'movieDescription' 
-		            ? element.querySelector('textarea') // 줄거리는 textarea에서 가져옴
-		            : element.querySelector('input');
-		        if (inputField) {
-		            updatedData[id] = inputField.value; // 수정된 데이터를 객체에 저장
-		        }
-		    });
-		
-	    // 서버로 수정된 데이터를 전송 (AJAX)
-	    fetch('/updateMovieInfo', { // 여기는 서버의 엔드포인트 URL
-	        method: 'POST',
-	        headers: {
-	            'Content-Type': 'application/json',
-	        },
-	        body: JSON.stringify(updatedData), // 수정된 데이터를 JSON으로 변환하여 전송
-	    })
-	    .then(response => response.json()) // 서버로부터 JSON 응답을 받음
-	    .then(data => {
-	        if (data.success) {
-	            // 성공적으로 저장되었을 경우 화면에 반영
-	            fieldsToEdit.forEach(id => {
-	                const element = document.getElementById(id);
-	                const inputField = element.querySelector('input');
-	                if (inputField) {
-	                    element.textContent = inputField.value; // 입력된 값으로 텍스트를 업데이트
-	                }
-	            });
-	            editBtn.style.display = 'inline-block';
-	            saveBtn.style.display = 'none';
-	        } else {
-	            alert('저장에 실패했습니다.');
-	        }
-	    })
-	    .catch(error => {
-	        console.error('Error:', error);
-	        alert('서버와의 통신에 실패했습니다.');
-	    });
-	});
-		const editInfoBtn = document.getElementById('editInfoBtn');
-		const saveInfoBtn = document.getElementById('saveInfoBtn');
-		const infoFieldsToEdit = ['genre', 'director', 'actors'];
+        // 수정 버튼 클릭 시
+        $('#editBtn, #editInfoBtn').on('click', function() {
+            fieldsToEdit.forEach(function(id) {
+                const $element = $('#' + id);
+                const currentValue = $element.text();
 
-		// 영화 정보 수정 버튼 클릭 시
-		editInfoBtn.addEventListener('click', () => {
-		    infoFieldsToEdit.forEach(id => {
-		        const element = document.getElementById(id);
-		        const currentValue = element.textContent;
-		        element.innerHTML = `<input class="edit-input" type='text' value='\${currentValue}' />`;
-		    });
-		    editInfoBtn.style.display = 'none';
-		    saveInfoBtn.style.display = 'inline-block';
-		});
+                if (id === 'movieDescription') {
+                    $element.html(`<textarea name="${id}" rows="5">${currentValue}</textarea>`);
+                } else {
+                    $element.html(`<input type="text" name="${id}" value="${currentValue}" />`);
+                }
+            });
 
-		// 영화 정보 저장 버튼 클릭 시
-		saveInfoBtn.addEventListener('click', () => {
-		    let updatedInfoData = {}; // 수정된 영화 정보를 저장할 객체
+            $('#editBtn, #editInfoBtn').hide();
+            $('#saveBtn, #saveInfoBtn').show();
+        });
 
-		    // 각 필드의 입력값을 추출
-		    infoFieldsToEdit.forEach(id => {
-		        const element = document.getElementById(id);
-		        const inputField = element.querySelector('input');
-		        if (inputField) {
-		            updatedInfoData[id] = inputField.value; // 수정된 데이터를 객체에 저장
-		        }
-		    });
+        // 폼 서브밋 처리
+        $('#movieForm').on('submit', function(event) {
+            event.preventDefault(); // 폼 제출 방지
 
-		    // 서버로 수정된 데이터를 전송 (AJAX)
-		    fetch('/updateMovieDetails', { // 여기는 서버의 엔드포인트 URL (영화 세부 정보 수정용)
-		        method: 'POST',
-		        headers: {
-		            'Content-Type': 'application/json',
-		        },
-		        body: JSON.stringify(updatedInfoData), // 수정된 데이터를 JSON으로 변환하여 전송
-		    })
-		    .then(response => response.json()) // 서버로부터 JSON 응답을 받음
-		    .then(data => {
-		        if (data.success) {
-		            // 성공적으로 저장되었을 경우 화면에 반영
-		            infoFieldsToEdit.forEach(id => {
-		                const element = document.getElementById(id);
-		                const inputField = element.querySelector('input');
-		                if (inputField) {
-		                    element.textContent = inputField.value; // 입력된 값으로 텍스트를 업데이트
-		                }
-		            });
-		            editInfoBtn.style.display = 'inline-block';
-		            saveInfoBtn.style.display = 'none';
-		        } else {
-		            alert('저장에 실패했습니다.');
-		        }
-		    })
-		    .catch(error => {
-		        console.error('Error:', error);
-		        alert('서버와의 통신에 실패했습니다.');
-		    });
-		});;
+            const formData = $(this).serialize(); // 폼 데이터 직렬화
+
+            // Ajax 요청을 통해 서버로 전송
+            $.ajax({
+                type: 'POST',
+                url: '/updateMovieInfo',
+                data: formData,
+                success: function(response) {
+                    fieldsToEdit.forEach(function(id) {
+                        const $element = $('#' + id);
+                        const newValue = $(`[name="${id}"]`).val();
+                        $element.text(newValue); // 입력된 값을 텍스트로 변환
+                    });
+
+                    $('#editBtn, #editInfoBtn').show();
+                    $('#saveBtn, #saveInfoBtn').hide();
+                },
+                error: function(err) {
+                    console.error("Error:", err);
+                    alert("저장 중 오류가 발생했습니다.");
+                }
+            });
+        });
+    });
     </script>
 </body>
 </html>
