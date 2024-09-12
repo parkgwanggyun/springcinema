@@ -145,13 +145,13 @@ body {
         grid-template-columns: 1fr;
     }
 }
-.footer {
+/* .footer {
     background-color: #333333;
     color: #ffffff;
     text-align: center;
     padding: 20px 0;
-    /* position: fixed; */ /* 고정 위치 속성 삭제 */
-    bottom: 0; /* 고정 위치 관련 속성 삭제 */
+    // position: fixed; 고정 위치 속성 삭제 
+    bottom: 0; //고정 위치 관련 속성 삭제 
     width: 100%;
     border-top: 1px solid #e0e0e0;
 }
@@ -179,7 +179,7 @@ body {
     margin: 0 10px;
     font-size: 1em;
     font-weight: normal;
-}
+} */
 .movie-carousel {
    position: relative;
     width: 100%;
@@ -272,7 +272,7 @@ body {
     <button class="carousel-control next">›</button>
 </section>
  </div>
-    <footer class="footer">
+    <!-- <footer class="footer">
     <div class="footer-content">
         <p>Team Members:</p>
         <ul class="team-list">
@@ -282,7 +282,7 @@ body {
             <li>박광균</li>
         </ul>
     </div>
-</footer>
+</footer> -->
 <script>
 const carousel = document.querySelector('.carousel');
 const prevButton = document.querySelector('.carousel-control.prev');
@@ -304,6 +304,7 @@ prevButton.addEventListener('click', () => {
 });
 
 nextButton.addEventListener('click', () => {
+
     if (currentIndex < carousel.children.length - visibleCards) { // 카드가 3개씩 보일 때
         currentIndex++;
         updateCarousel();

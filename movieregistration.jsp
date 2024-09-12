@@ -164,40 +164,36 @@ body {
         <form action="/movie/register" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">영화 제목:</label>
-                <input type="text" class="form-control" id="title" name="title" required>
+                <input type="text" class="form-control" id="title" name="mo_title" required>
             </div>
             <div class="form-group">
                 <label for="releaseDate">개봉일:</label>
-                <input type="date" class="form-control" id="releaseDate" name="releaseDate" required>
+                <input type="date" class="form-control" id="releaseDate" name="mo_date" required>
             </div>
             <div class="form-group">
                 <label for="duration">상영시간 (분):</label>
-                <input type="number" class="form-control" id="duration" name="duration" required>
+                <input type="number" class="form-control" id="duration" name="mo_time" required>
             </div>
             <div class="form-group">
                 <label for="viewableage">시청가능 연령:</label>
-                <input type="number" class="form-control" id="viewableage" name="viewableage" required>
+                <input type="number" class="form-control" id="viewableage" name="mo_age" required>
             </div>
 			<div class="form-group">
 			    <label for="story">줄거리:</label>
-			    <textarea class="form-control" id="story" name="story" rows="5" required></textarea>
+			    <textarea class="form-control" id="story" name="mo_content" rows="5" required></textarea>
 			</div>
             <div class="form-group">
                 <label for="genre">장르:</label>
-                <input type="text" class="form-control" id="genre" name="genre" required>
-            </div>
-            <div class="form-group">
-                <label for="director">감독:</label>
-                <input type="text" class="form-control" id="director" name="director" required>
+                <input type="text" class="form-control" id="genre" name="mo_genre" required>
             </div>
             <div class="form-group">
                 <label for="cast">출연:</label>
-                <input type="text" class="form-control" id="cast" name="cast" required>
+                <input type="text" class="form-control" id="cast" name="ch_name" required>
             </div>
             
             <div class="form-group">
                 <label for="poster">포스터 이미지:</label>
-                <input type="file" onchange="readURL(this);" class="form-control-file" id="poster" name="poster" required>
+                <input type="file" onchange="readURL(this);" class="form-control-file" id="poster" name="mo_image" required>
             </div>
             <div class="form-group">
   			<img id="posterPreview" src="" alt="포스터 미리보기" style="width: 200px; height: auto;" />
