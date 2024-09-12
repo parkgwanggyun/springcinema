@@ -298,6 +298,7 @@
 <body>
 
     <div id="contents_new23">
+     <form id="movieForm" method="POST" action="/updateMovieInfo">
     	<div id="contents" class="contents_movie_detail">
     		<div class="poster_info">
     			<img alt="영화상세" src="${movie.mo_image }">
@@ -338,8 +339,8 @@
   						</ul>
   						<!-- 영화정보 관리자 로그인 시에만 보이는 수정 버튼 -->
   						 <div style="text-align: right;">
-       							<button id="editInfoBtn" class="button">정보 수정</button>
-       							<button id="saveInfoBtn" class="button" style="display:none;">저장하기</button>
+                                    <button id="editInfoBtn" class="button">정보 수정</button>
+                                    <button type="submit" id="saveInfoBtn" class="button" style="display:none;">저장하기</button>
     						<c:if test="${isAdmin}">
     						</c:if>
     					</div>
@@ -347,7 +348,8 @@
   				</div>
   			</div>
   		</div>
-   </div>
+  	</form>
+  </div>
    <!-- <footer class="footer">
         <div class="footer-content">
             <p>Team Members:</p>
