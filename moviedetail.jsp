@@ -319,9 +319,6 @@
     				</div>
     			</div>
   				<div style="text-align: right;">
-    					<!-- 수정 기능 추가 -->
-       					<button id="editBtn" class="button">수정하기</button>
-       					<button id="saveBtn" class="button" style="display:none;">저장하기</button>
     				<c:if test="${isAdmin}">
     				</c:if>
     				<a href="#" class="button">예매하기</a>
@@ -364,7 +361,7 @@
         <!-- JavaScript 코드 -->
     <script>
     $(document).ready(function() {
-        const fieldsToEdit = ['movieTitle', 'releaseDate', 'duration', 'ageRating', 'movieDescription', 'genre', 'director', 'actors'];
+        const fieldsToEdit = ['mo_title', 'mo_date', 'mo_time', 'mo_age', 'mo_content'];
 
         // 수정 버튼 클릭 시
         $('#editBtn, #editInfoBtn').on('click', function() {
@@ -372,10 +369,10 @@
                 const $element = $('#' + id);
                 const currentValue = $element.text();
 
-                if (id === 'movieDescription') {
+                if (id === 'mo_content') {
                     $element.html(`<textarea name="\${id}" rows="5">${currentValue}</textarea>`);
                 } else {
-                    $element.html(`<input type="text" name="\${id}" value="${currentValue}" />`);
+                    $element.html(`<input type="text" name="\${id}" value="\${currentValue}" />`);
                 }
             });
 
@@ -386,14 +383,18 @@
         // 폼 서브밋 처리
         $('#movieForm').on('submit', function(event) {
             event.preventDefault(); // 폼 제출 방지
-
-            const formData = $(this).serialize(); // 폼 데이터 직렬화
-
+         
+            const movie = {}; // movie 객체 정의
+            fieldsToEdit.forEach(function(id) {
+                const $element = $(`[name="\${id}"]`);
+                movie[id] = $element.val(); // 각 필드의 값을 JSON 객체에 저장
+            });
             // Ajax 요청을 통해 서버로 전송
             $.ajax({
                 type: 'POST',
                 url: '/updateMovieInfo',
-                data: formData,
+                data: JSON.stringify(movie), // JSON 문자열 전송
+                contentType: 'application/json; charset=utf-8', // 요청 헤더 설정
                 success: function(response) {
                     fieldsToEdit.forEach(function(id) {
                         const $element = $('#' + id);
